@@ -14,10 +14,16 @@ body {
     padding: 0;
 }
 
+/* Animazione per l'apertura del menu */
 @keyframes openMenuAnimation {
     0% {
         transform: translateX(100%) translateY(-100%) scale(0);
         /* Inizia dalla posizione in alto a destra */
+    }
+
+    50% {
+        transform: translateX(25%) translateY(25%) scale(0.5);
+        /* Muovi verso il centro della pagina a metà animazione */
     }
 
     100% {
@@ -26,6 +32,7 @@ body {
     }
 }
 
+/* Animazione per il testo del pulsante */
 @keyframes bounceAnimation {
     0% {
         transform: translateY(0);
@@ -58,12 +65,17 @@ body {
 
 /* Stili del pulsante del menu */
 #menu-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border-radius: 5px;
     background-color: #0074D9;
     color: #fff;
     border: none;
     padding: 10px 20px;
+    margin: 10px;
+    width: fit-content;
     cursor: pointer;
-    text-align: end;
     font-size: 10px;
     /* Imposta la dimensione del font a 10px */
     font-family: "Larsseit-medium", sans-serif;
@@ -71,10 +83,15 @@ body {
     font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 1px;
+}
+
+/* Stili del pulsante del menu quando è cliccato */
+#menu-button:active {
     animation: bounceAnimation 0.5s ease;
     /* Durata e modalità di animazione */
 }
 
+/* Stili del pulsante del menu quando il cursore passa sopra */
 #menu-button:hover {
     background-color: #0056b3;
 }
@@ -91,8 +108,6 @@ body {
     z-index: 1;
     opacity: 0;
     transition: opacity 0.3s ease;
-    animation: openMenuAnimation 0.5s ease;
-    /* Durata e modalità di animazione */
     transform-origin: top right;
     /* Imposta il punto di origine per l'animazione al centro */
 }
@@ -101,6 +116,8 @@ body {
 #menu.active {
     display: block;
     opacity: 1;
+    animation: openMenuAnimation 0.5s ease;
+    /* Durata e modalità di animazione */
 }
 
 /* Stili per l'icona "X" */
@@ -113,12 +130,40 @@ body {
     cursor: pointer;
 }
 
-/* Animazione per il quadrato */
+/* Animazione per il quadrato quando il menu è attivo */
 #menu.active {
     width: 100%;
-    /* Ingrandisci il menu quando è attivo */
     height: 100%;
     transform-origin: center;
     transform: scale(1);
     transition: transform 0.5s ease;
+}
+
+/* Aggiungiamo un'animazione per il pulsante del menu quando è attivo */
+/* Aggiungi questa parte di CSS per l'animazione del pulsante */
+@keyframes moveMenuButton {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    25% {
+        transform: translate(calc(50% - 75px), calc(50% - 25px)) rotate(0deg);
+    }
+
+    50% {
+        transform: translate(calc(50% - 75px), calc(50% - 25px)) rotate(90deg);
+    }
+
+    75% {
+        transform: translate(0, 50%) rotate(90deg);
+    }
+
+    100% {
+        transform: translate(0, 50%) rotate(90deg);
+    }
+}
+
+/* Applica l'animazione al pulsante del menu */
+#menu-button.active {
+    animation: moveMenuButton 2s ease;
 }
