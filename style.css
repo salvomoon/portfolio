@@ -1,14 +1,124 @@
+/* Reset dei box model */
 * {
     box-sizing: border-box;
-}
-
-html,
-body {
     margin: 0;
     padding: 0;
 }
 
+/* Stili di base per il corpo della pagina */
+html,
 body {
     display: flex;
     flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+
+@keyframes openMenuAnimation {
+    0% {
+        transform: translateX(100%) translateY(-100%) scale(0);
+        /* Inizia dalla posizione in alto a destra */
+    }
+
+    100% {
+        transform: translateX(0) translateY(0) scale(1);
+        /* Finisci al centro della pagina */
+    }
+}
+
+@keyframes bounceAnimation {
+    0% {
+        transform: translateY(0);
+    }
+
+    20% {
+        transform: translateY(-5px);
+        /* Muoviti verso l'alto */
+    }
+
+    40% {
+        transform: translateY(5px);
+        /* Muoviti verso il basso */
+    }
+
+    60% {
+        transform: translateY(-5px);
+        /* Muoviti verso l'alto */
+    }
+
+    80% {
+        transform: translateY(5px);
+        /* Muoviti verso il basso */
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Stili del pulsante del menu */
+#menu-button {
+    background-color: #0074D9;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-align: end;
+    font-size: 10px;
+    /* Imposta la dimensione del font a 10px */
+    font-family: "Larsseit-medium", sans-serif;
+    /* Utilizza il font "Larsseit-medium" */
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    animation: bounceAnimation 0.5s ease;
+    /* Durata e modalità di animazione */
+}
+
+#menu-button:hover {
+    background-color: #0056b3;
+}
+
+/* Stili del menu a schermo intero */
+#menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    animation: openMenuAnimation 0.5s ease;
+    /* Durata e modalità di animazione */
+    transform-origin: top right;
+    /* Imposta il punto di origine per l'animazione al centro */
+}
+
+/* Animazione per l'apertura del menu */
+#menu.active {
+    display: block;
+    opacity: 1;
+}
+
+/* Stili per l'icona "X" */
+#close-menu {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Animazione per il quadrato */
+#menu.active {
+    width: 100%;
+    /* Ingrandisci il menu quando è attivo */
+    height: 100%;
+    transform-origin: center;
+    transform: scale(1);
+    transition: transform 0.5s ease;
 }
